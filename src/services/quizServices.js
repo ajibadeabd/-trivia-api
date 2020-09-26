@@ -1,50 +1,54 @@
 const CustomError = require('../utility/customError');
 const triviaJsonFormat = require('../utility/trivia');
-const {getQuestion,getCorrectAnswer,validateQuestionsId} = require('../utility/question.js');
+const {getQuestion,getCorrectAnswer} = require('../utility/question.js');
 const _= require('lodash');
-const User= require('../models/userModel');
+const Quiz= require('../models/quizModel');
 const config= require('../config/constants');
+const { over } = require('lodash');
 
 
 
 
 class quizServices{
-    // get 10 questions ramdomly
    async getQuestion(){
     let Question=[];
+    // select 10 questions at ramdom
+
 for(let i=0; i<10; i++){
    Question.push(getQuestion(triviaJsonFormat)[i]);
 }
+//return selected question
    return (Question);
     }
-    submitAnswer(req,data){
-        
-        let correct=[];
+
+
+   async submitAnswer(req,data){
+       //this are the 40 question
+        let overalQuestion =getQuestion(triviaJsonFormat);
+
+        //list of answer and question id 
         let {question1,question2,question3,question4,question5,question6,
             question7,question8,question9,question10}=req.body;
-            //answer id
-            let allQuestion=[question1,question2,question3,question4,question5,question6,
-                question7,question8,question9,question10];
-                  
-        for(let j=0; j<allQuestion.length; j++){
-            if(typeof parseInt(allQuestion[j].id)!=="number"){
-                throw new  CustomError("all id must be a number", 400,false);
-            }
-                        if(allQuestion[j]==undefined ||
-                            allQuestion[j]==='' ||
-                            allQuestion[j].id==='' ||
-                            allQuestion[j].id===undefined){
-            throw new  CustomError("please provide all questions id", 400,false);}}
 
-                //validate if all question id is supplied
-            //     validateQuestionsId(allQuestion)
-            //     let overalQuestion =getQuestion(triviaJsonFormat);
-            //   let correctAnswer=  getCorrectAnswer(allQuestion,overalQuestion);
-        return;
-        //  {answerInPercentage:((correctAnswer.correct/10)*100+'%'),
-        // inCorrectAnswer:(10-correctAnswer.correct),
-        // CorrectAnswer:(correctAnswer.correct),
-        //     }
+        //answer id
+        let allQuestion=[question1,question2,question3,question4,question5,question6,
+            question7,question8,question9,question10];
+
+            //list of correct answer
+       let response = (getCorrectAnswer(allQuestion,overalQuestion))
+       let inPercentage = `${response.length/10*100}%`
+             let saveScore = await new Quiz({
+                 score:inPercentage,
+                 userId:req.user.id
+             });
+             //save the result in database
+             saveScore.save();
+
+             // return result
+    return   {no_of_correct_answers:response.length,
+        no_of_wrong_answers:10-response.length,
+        scores_in_percentage:inPercentage
+    }
     }
 
 }

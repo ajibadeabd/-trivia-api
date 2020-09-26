@@ -8,6 +8,6 @@ var router = express.Router();
 // route for get question randomly
 router.get('/get_quiz', quizCtrl.getQuestion);
 // route for posting answer
-router.post('/post_answer', quizCtrl.submitAnswer);
+router.post('/post_answer',auth, quizCtrl.submitAnswer);
 
 module.exports = router;
