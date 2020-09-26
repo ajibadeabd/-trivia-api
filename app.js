@@ -12,7 +12,6 @@ var app = express();
 
 require('./src/middleware/initialMiddleware')(app);
 const config = require('./src/config/constants');
-const database = require('./src/config/database');
 const errorMiddleware = require('./src/middleware/errorHandler');
 const apiRoutes = require('./src/routes/index');
 

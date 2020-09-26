@@ -1,6 +1,6 @@
 const CustomError = require('../utility/customError');
 const triviaJsonFormat = require('../utility/trivia');
-const {getQuestion} = require('../utility/question.js');
+const {getQuestion,getCorrectAnswer,validateQuestionsId} = require('../utility/question.js');
 const _= require('lodash');
 const User= require('../models/userModel');
 const config= require('../config/constants');
@@ -18,42 +18,33 @@ for(let i=0; i<10; i++){
    return (Question);
     }
     submitAnswer(req,data){
-        let correct=0;
-        let inCorrect=0;
-        let currentAnswer=[];
-        let {answer1,answer2,answer3,answer4,answer5,answer6,
-            answer7,answer8,answer9,answer10,a,b,c,d,e,f,g,h,i,j}=req.body;
-            let arr=[a,b,c,d,e,f,g,h,i,j];
-            let allAnswer=[answer1,answer2,answer3,answer4,answer5,answer6,
-                answer7,answer8,answer9,answer10];
-            const get =getQuestion(triviaJsonFormat);
-            let n=(n)=>{
-            const get =getQuestion(triviaJsonFormat);
-
-            for(let i=0; i<get.length; i++){
-            // console.log()
-            if(get[i].id==n){
-            currentAnswer.push( get[i])
-            for(let j=0; j<allAnswer.length; j++){
-            if(get[i].answer==allAnswer[j])
-            correct++
-            else 
-            inCorrect++
-        }
-
-
+        
+        let correct=[];
+        let {question1,question2,question3,question4,question5,question6,
+            question7,question8,question9,question10}=req.body;
+            //answer id
+            let allQuestion=[question1,question2,question3,question4,question5,question6,
+                question7,question8,question9,question10];
+                  
+        for(let j=0; j<allQuestion.length; j++){
+            if(typeof parseInt(allQuestion[j].id)!=="number"){
+                throw new  CustomError("all id must be a number", 400,false);
             }
-            }
-        }
-        for(let i=0; i<arr.length; i++){
-            n(arr[i])
-        }
-            // .find(element=>{
-            // element.id=2
-            // })
+                        if(allQuestion[j]==undefined ||
+                            allQuestion[j]==='' ||
+                            allQuestion[j].id==='' ||
+                            allQuestion[j].id===undefined){
+            throw new  CustomError("please provide all questions id", 400,false);}}
 
-        return correct
-        // return currentAnswer,(correct,inCorrect)
+                //validate if all question id is supplied
+            //     validateQuestionsId(allQuestion)
+            //     let overalQuestion =getQuestion(triviaJsonFormat);
+            //   let correctAnswer=  getCorrectAnswer(allQuestion,overalQuestion);
+        return;
+        //  {answerInPercentage:((correctAnswer.correct/10)*100+'%'),
+        // inCorrectAnswer:(10-correctAnswer.correct),
+        // CorrectAnswer:(correctAnswer.correct),
+        //     }
     }
 
 }
