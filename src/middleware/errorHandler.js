@@ -1,5 +1,5 @@
 const response = require('../utility/response')
-const CustomError = require('../utility/CustomError')
+const CustomError = require('../utility/customError')
 
 module.exports = function(app){
     app.use((req, res, next) => {
