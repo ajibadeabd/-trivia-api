@@ -24,9 +24,9 @@
 
 URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
 
-METHOD - POST
+1. METHOD - POST
 
-Sample Request -
+2. Sample Request -
 
 {
     "email":"emial@gmail.com",
@@ -34,7 +34,7 @@ Sample Request -
     "con_password":"con_password",
     "name":"yourName",
 };
-Sample Response -
+3. Sample Response -
 {
     "success": true,
     "message": "successfully logged in",
@@ -43,17 +43,17 @@ Sample Response -
 
 ## 2. register End point 
 
-URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/login
+1. URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/login
 
-METHOD - POST
+2. METHOD - POST
 
-Sample Request
+3. Sample Request
 
 {
     "email":"emial@gmail.com",
     "password":"password"
 }
-Sample Response
+4. Sample Response
 { "success": true,
     "message": "successfully logged in",
     "data": {
@@ -76,11 +76,11 @@ Sample Response
 
 ## 3.  get ten randon question End point
  
-URL -  https://trivia-quiz-api.herokuapp.com/api/v1/quiz/get_quiz
+1. URL -  https://trivia-quiz-api.herokuapp.com/api/v1/quiz/get_quiz
 
-METHOD - GET
+2. METHOD - GET
 
-Sample Response
+3. Sample Response
 {
     "success": true,
     "message": "Ten random question has ben fetch succefully",
@@ -181,11 +181,11 @@ Sample Response
 ##  4. post_answer End point 
 
 
-URL - https://trivia-quiz-api.herokuapp.com/api/v1/quiz/post_answer
+1. URL - https://trivia-quiz-api.herokuapp.com/api/v1/quiz/post_answer
 
-METHOD - POST
+2. METHOD - POST
 
-Sample Request
+3. Sample Request
 
 {
     "question1": {"id": "1","answer": "B"},
@@ -199,7 +199,7 @@ Sample Request
     "question9": {"id": "34","answer": "B"},
     "question10": {"id": "23","answer": "B"},
 }
-Sample Response
+4. Sample Response
 {
     "success": true,
     "message": "successfully logged in",
