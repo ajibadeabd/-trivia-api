@@ -26,7 +26,7 @@ URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
 
 METHOD - POST
 
-Sample Request
+Sample Request -
 
 {
     "email":"emial@gmail.com",
@@ -34,7 +34,7 @@ Sample Request
     "con_password":"con_password",
     "name":"yourName",
 };
-Sample Response
+Sample Response -
 {
     "success": true,
     "message": "successfully logged in",
