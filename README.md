@@ -33,13 +33,13 @@ Sample Request
     "password":"password",
     "con_password":"con_password",
     "name":"yourName",
-}
+};
 Sample Response
 {
     "success": true,
     "message": "successfully logged in",
     "data": null
-}
+};
 
 ## 2. register End point 
 
