@@ -18,9 +18,9 @@
 
 4. Server should be running on port 24434
 
-###   four End points
+###   Four End points
 
-1. ## register End point
+## 1. register End point
 
 URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
 
@@ -41,7 +41,7 @@ Sample Response
     "data": null
 }
 
-2. ##  register End point 
+## 2. register End point 
 
 URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/login
 
@@ -74,7 +74,7 @@ Sample Response
 
 
 
-3. ##  get ten randon question End point
+## 3.  get ten randon question End point
  
 URL -  https://trivia-quiz-api.herokuapp.com/api/v1/quiz/get_quiz
 
@@ -178,7 +178,7 @@ Sample Response
     ]
 }
 
-4. ##  post_answer End point 
+##  4. post_answer End point 
 
 
 URL - https://trivia-quiz-api.herokuapp.com/api/v1/quiz/post_answer
