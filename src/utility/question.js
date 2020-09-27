@@ -1,6 +1,4 @@
-const { json } = require('express');
-// const trivia =  require('./src/utility/trivia')
-const CustomError = require('../utility/customError');
+const CustomError = require('./customError');
 
 exports.getQuestion=(data)=>{
 // let Question = [];
