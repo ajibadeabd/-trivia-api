@@ -185,7 +185,7 @@ URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
 
 2. METHOD - POST
 
-3. Sample Request
+##### 3. Sample Request
 
 {
     "question1": {"id": "1","answer": "B"},
@@ -199,7 +199,7 @@ URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
     "question9": {"id": "34","answer": "B"},
     "question10": {"id": "23","answer": "B"},
 }
-4. Sample Response
+##### 4. Sample Response
 {
     "success": true,
     "message": "successfully logged in",
