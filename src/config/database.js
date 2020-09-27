@@ -8,13 +8,8 @@ const options = {
   };
  
 module.exports = function (){
-let url=''
-    if(process.env.NODE_EVN==='production'){
-         url=config.atlasdatabaseURI      
-    }else
-         url=config.localdatabaseURI     
 
-    mongoose.connect(url,options)
+    mongoose.connect(config.atlasdatabaseURI,options)
     .then(() => {
         console.log("database established")
     })

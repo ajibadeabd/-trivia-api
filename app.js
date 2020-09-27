@@ -17,6 +17,9 @@ const apiRoutes = require('./src/routes/index');
 
 //endPoint
 app.use('/api/v1', apiRoutes);
+app.get('/', (req,res)=>{
+    res.render('index')
+});
 // Error Middleware
 errorMiddleware(app);
 
