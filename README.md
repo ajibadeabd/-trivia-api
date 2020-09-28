@@ -187,6 +187,9 @@ URL - https://trivia-quiz-api.herokuapp.com/api/v1/user/register
 
 ##### 3. Sample Request
 
+##### 4. Header  {Bearer {token}}
+
+
 {
     "question1": {"id": "1","answer": "B"},
     "question2": {"id": "4","answer": "B"},

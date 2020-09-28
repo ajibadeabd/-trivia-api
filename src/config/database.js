@@ -14,6 +14,6 @@ module.exports = function (){
         console.log("database established")
     })
     .catch(err => {
-        console.log("There was an error while connecting to the database.",`${process.env.localDATABASE}`)
+        console.log("There was an error while connecting to the database.")
     })
 }

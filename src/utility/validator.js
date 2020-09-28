@@ -1,5 +1,5 @@
 const mongoose  = require('mongoose');
-const CustomError = require('./customError')
+const CustomError = require('./CustomError')
 
 
     exports.emailValidator =async (data)=>{

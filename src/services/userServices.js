@@ -5,6 +5,7 @@ const _= require('lodash');
 const User= require('../models/userModel');
 const config= require('../config/constants');
 const jwt= require('jsonwebtoken');
+const bcrypt= require('bcryptjs');
 
 
 
@@ -13,13 +14,13 @@ class userServices{
     async signUp(req,data){
         data=_.pick(data,['email','password','con_password','name']);
         //validate email
-    emailValidator(data);
+    await emailValidator(data);
 
         //validate password
-    passwordValidator(data); 
+    await  passwordValidator(data); 
 
         //validate player name
-    nameValidator(data);
+    await nameValidator(data);
 
     //check for if user name exist in the database
     let isExist = await User.findOne({name:data.name});
@@ -41,17 +42,21 @@ class userServices{
       await emailValidator(data);
 
         //validate password
-        loginpasswordValidator(data);
+        await loginpasswordValidator(data);
         
         //check if user exist in the database
            let user =await User.findOne({email:data.email})
              if(!user) throw  new CustomError("no user found", 404,false); 
            else{ let payload={ name:data.name, _id:user._id}
+           //compare the supplied password with the database password
+        const isCorrect = await bcrypt.compare(data.password, user.password);
+        if (!isCorrect) throw new CustomError("Incorrect password");
 
           //  create an access token and a refresh token 
            const token = jwt.sign(payload, process.env.jwtSecret, {expiresIn: config.accessTokenexpires_expiresIn});
              const refreshToken = jwt.sign(payload,process.env.jwtSecret, {expiresIn: config.refreshToken_expiresIn });
-       user = _.pick(user, ["_id","email",'name']);
+       user = _.pick(user, ['_id','email','name']);
+
              return{success:true,  status:200,
              data:{user,
              token:`Bearer ${token}`,

@@ -11,7 +11,7 @@ module.exports = function(app){
                 res.status(error.status).json(response(false, error.message, null))
                 break;
             case error.name == 'SyntaxError' :
-                res.status(400).json(response(false,'invalid question id', null))
+                res.status(400).json(response(false, error.message, null))
                 break;
             case error.name == 'JsonWebTokenError' :
                 res.status(400).json(response(false, error.message, null))
